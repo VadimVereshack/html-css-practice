@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="motorcycle_sale_style.css">
+    <title>Мотоцикл Lifan LF150-10s</title>
+</head>
+<body>
+    <header>
+        <div>TEST SITE</div>
+        <nav ><a href="https://github.com/VadimVereshack">MY GIT</a></nav>
+    </header>
+
+    <div id="wrapper">
+        <div id="container">
+            <h1>МОТОЦИКЛ<h1 id="name_moto">LIFAN LF150-10S</h1></h1>
+            <br>
+            <div id="images">
+                <button id="prev">&lt</button>
+                <button id="next">&gt</button>
+                <img src="./img/1.png" alt="img" width="80%">
+                <img src="./img/2.png" alt="img" width="80%">
+                <img src="./img/3.png" alt="img" width="80%">
+                <img src="./img/4.png" alt="img" width="80%">
+            </div>
+            <br>
+        
+             <div id="description">
+                <h2><a style="color: #9c0f0f;">Х</a>арактеристики:</h2>
+                <ul>
+                    <li>Тип мотоцикла: Стрітбайк</li>
+                    <li>Стан: Б/У, технічно справний</li>
+                    <li>Пробіг: 34 500 км.</li>
+                    <li>Об'єм двигуна: 150сс</li>
+                    <li>Колір: Сірий</li>
+                    <li>Максимальна швидкість: 126 км/год</li>
+                </ul>
+             </div>
+            <br>
+            <p id="price">40 000 <a style="color: #9c0f0f;">грн</a></p>
+            <br>
+            <button id="sale">ЗАМОВИТИ</button>
+        </div>
+    </div>
+    <div id="overlay">
+            <div id="sale_menu">
+                <button id="cancel">×</button>
+                <p>ЗАЛИШТЕ СВОЇ ДАНІ І МИ ЗВЯЖЕМОСЬ З ВАМИ</p>
+                <form action="/test" method="POST">
+                    <div>
+                        <label for="name">Імя:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div>
+                        <label for="lastname">Призвище:</label>
+                        <input type="text" id="name" name="lastname" required>
+                    </div>
+                    <div>
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div>
+                        <label for="phone">Телефон:</label>
+                        <input type="tel" id="email" name="phone" required>
+                    </div>
+            
+
+                    <button id="submit" type="submit">ПІДТВЕРДИТИ</button>
+                  </form>
+            </div>
+    </div>
+</body>
+<script>
+let index = 0;
+const body = document.body;
+const images = document.querySelectorAll('img');
+images.forEach(img => img.classList.remove('active'));
+images[index].classList.add('active');
+
+const buttonNext = document.getElementById('next');
+const buttonPrev = document.getElementById('prev');
+const sale = document.getElementById('sale');
+const cancel = document.getElementById('cancel');
+const overlay = document.getElementById('overlay');
+checkIndex();
+function checkIndex(){
+    if(index == 0){ 
+        buttonPrev.style.opacity = '0' ;
+        buttonPrev.style['pointer-events'] = 'none';
+    } else {
+        buttonPrev.style.opacity = '1' ;
+        buttonPrev.style['pointer-events'] = 'auto';
+    }
+    if(index == images.length-1){ 
+        buttonNext.style.opacity = '0' ;
+        buttonNext.style['pointer-events'] = 'none';
+    } else {
+        buttonNext.style.opacity = '1' ;
+        buttonNext.style['pointer-events'] = 'auto';
+    }
+}
+
+buttonNext.addEventListener('click', ()=>{
+    images[index].classList.remove('active');
+    index++;
+    images[index].classList.add('active');
+    checkIndex();
+});
+buttonPrev.addEventListener('click', ()=>{
+    images[index].classList.remove('active');
+    index--;
+    images[index].classList.add('active');
+    checkIndex();
+})
+
+sale.addEventListener('click', ()=>{
+    overlay.style.display = 'flex';
+    body.style.overflow = 'hidden';
+});
+
+cancel.addEventListener('click', ()=>{
+    overlay.style.display = 'none';
+    body.style.overflow = '';
+});
+
+</script>
+</html>
